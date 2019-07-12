@@ -4,7 +4,7 @@ import pyrebase
 app = Flask("__main__")
 
 config = {
-    "apiKey": " ",
+    "apiKey": "AIzaSyDagDom_feyHDXyXkhcCEc_iCn15rzed8A",
     "authDomain": "firebasic-68b4b.firebaseapp.com",
     "databaseURL": "https://firebasic-68b4b.firebaseio.com",
     "projectId": "firebasic-68b4b",
