@@ -1,4 +1,4 @@
-from flask import Flask,render_template,jsonify,request
+from flask import Flask,render_template,jsonify,request,redirect
 import pyrebase
 
 app = Flask("__main__")
@@ -43,8 +43,20 @@ def func():
                     print(m)
                     lis.append(m[0])
                 return render_template("index.html", to = lis)
+    elif request.method == 'GET':
+        todo = db.child("todo").get().val()
+        lis = []
+        for i in todo.values():
+            m = list(i.values())
+            lis.append(m[0])
+        return render_template("index.html", to = lis)      
     return render_template("index.html")
 
+
+@app.route('/delete/<id>')
+def delete_task(id):
+    db.child("todo").child(id).remove()
+    return redirect('/')
 
 if __name__ == "__main__":
     app.run(debug=True)
