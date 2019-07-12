@@ -45,11 +45,14 @@ def func():
                 return render_template("index.html", to = lis)
     elif request.method == 'GET':
         todo = db.child("todo").get().val()
-        lis = []
-        for i in todo.values():
-            m = list(i.values())
-            lis.append(m[0])
-        return render_template("index.html", to = lis)      
+        if todo == None:
+                return render_template("index.html")
+        else:
+            lis = []
+            for i in todo.values():
+                m = list(i.values())
+                lis.append(m[0])
+            return render_template("index.html", to = lis)      
     return render_template("index.html")
 
 
